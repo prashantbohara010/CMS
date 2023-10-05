@@ -1,50 +1,49 @@
 <?php
-
 include("include/header.php");
-
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>CMS Homepage</title>
+    <title>CMS Homepage</title>
+    <style>
+        .home {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            
+        }
+
+        .home .image {
+            flex: 1 1 45rem;
+            order: 1
+        }
+
+        .home .image img {
+            width: 100%;
+        }
+
+        .home .content {
+            flex: 1 1 45rem;
+            order: 2;
+            font-size: 3rem; 
+            
+        }
+    </style>
 </head>
 
 <body>
-    <div style="margin-top: 50px"></div>
-<div class="container">
-    <div class="col-md-12">
-        <div class="row">
-
-            <div class="col-mid-3 mx-1 shadow">
-                <img src="img/info.png">
-                
-            </div>
-
-             
-
-            <div class="col-mid-4 mx-1 shadow" style="margin-left: 100px">
-                <img src="img/download.jpg" style="width: 100%;">
-
-                <h5 class="text-center">We are employing for doctors</h5>
-
-                <a href="#"><button class="btn btn-success" style="margin-left: 50px">Create Account</button></a>
-                
-            </div>
-
-            <div class="col-mid-4 mx-1 shadow">
-                <img src="img/doc.jpg" style="width: 100%;">
-                <h5 class="text-center">We are employing for doctors</h5>
-
-                <a href="#"><button class="btn btn-success" style="margin-left: 50px">Apply Now!!!</button></a>
-            </div>
-
+   <!--home section starts-->
+   <div class="home">
+        <div class="image">
+            <img src="img/Doctors.png" alt="Doctor Image">
+        </div>
+        <div class="content">
+            <h3>Stay safe, stay healthy</h3>
+            <h3>We Care for you.</h3>
+           
         </div>
     </div>
-</div>
+    <!--home section ends-->
 </body>
-
 </html>

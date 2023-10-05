@@ -2,44 +2,33 @@
 session_start();
 include("include/connection.php");
 
-if (isset($_POST["login"])){
-    $username = $_POST["uname"];
-    $password = $_POST["pass"];
+if (isset($_POST['login'])) {
+    $uname = $_POST['uname'];
+    $pass = $_POST['pass'];
 
-    $error = array();
+    if (empty($uname)) {
+        echo "<script>alert('Enter Username');</script>";
+    } else if (empty($pass)) {
+        echo "<script>alert('Enter Password');</script>";
+    } else {
+        $query = "SELECT * FROM patient WHERE username = '$uname' AND password = '$pass'";
+        $res = mysqli_query($connect, $query);
 
-    if (empty($username)) {
-        $error['admin'] = "Enter Username";
-        echo "<script type='text/javascript'>alert('Please enter username')</script>";
-        exit();
-    } elseif (empty($password)){
-        $error['admin'] = "Enter Password";
-    }
-    
-    if (count($error) == 0){
-        $query = "SELECT * FROM admin WHERE username='$username' AND password='$password'";
-        $result = mysqli_query($connect, $query);
-        
-        if (mysqli_num_rows($result) == 1){
-            echo "<script>alert('You Have Logged in as an admin')</script>";
-            $_SESSION['admin'] = $username;
-            header("Location: admin/index.php");
-            exit();
+        if (mysqli_num_rows($res) == 1) {
+            header("Location: patient/index.php");
+            $_SESSION['patient'] = $uname;
         } else {
-            echo "<script>alert('Invalid Username or Password')</script>";
+            echo "<script>alert('Invalid Username or Password');</script>";
         }
     }
 }
+
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin Login Page</title>
+<title>Patient Login</title>
 <style>
     *{
         margin: 0;
@@ -97,33 +86,12 @@ if (isset($_POST["login"])){
         opacity: .7;
     }
 </style>
-
 </head>
 
 <body>
-    <!-- <?php
-    include("include/header.php");
-    ?> -->
-    <!-- <div style="margin-top: 100px; margin-left: 200px;"></div> -->
-    <div class="container">
+<div class="container">
     <form method="post">
-        <div>
-            <?php
-
-            if (isset($error['admin'])) {
-
-                $sh = $erro['admin'];
-
-                $show = "<h4 class='alert alert-danger'>$sh</h4>";
-
-            }else{
-                $show = "";
-            }
-            echo $show;
-
-            ?>
-        </div>
-        <h1>Admin Login</h1>
+        <h1>Patient Login</h1>
         <div class="form-group">
             <label>Username</label>
             <input type="text" name="uname" autocomplete="off"placeholder="Enter username" class="form-control" required>
@@ -135,6 +103,8 @@ if (isset($_POST["login"])){
         </div>
 
         <input type="submit" class="btn" name="login" value="Login">
+        <br><br>
+        <p>I don't have an account <a href="account.php">Click here</a></p>
     </form>
     </div>
 </body>

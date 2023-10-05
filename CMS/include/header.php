@@ -10,6 +10,10 @@
 
 <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.main.css">
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 
 <body>
@@ -22,12 +26,17 @@ if (isset($_SESSION['admin'])){
     $user = $_SESSION['admin'];
     echo '
     <li class="nav-item text-white"><a href="#" class="nav-link text-white">'.$user.'</a></li>
-    <li class="nav-item text-white"><a href="#" class="nav-link text-white">Logout</a></li>';
+    <li class="nav-item text-white"><a href="logout.php" class="nav-link text-white">Logout</a></li>';
+}elseif(isset($_SESSION['patient'])) {
+    $user = $_SESSION['patient'];
+    echo '
+    <li class="nav-item text-white"><a href="#" class="nav-link text-white">'.$user.'</a></li>
+    <li class="nav-item text-white"><a href="logout.php" class="nav-link text-white">Logout</a></li>';
 } else {
     echo '
     <li class="nav-item"><a href="adminlogin.php" class="nav-link text-white">Admin</a></li>
-    <li class="nav-item text-white"><a href="" class="nav-link text-white">Doctor</a></li>
-    <li class="nav-item text-white"><a href="" class="nav-link text-white">Patient</a></li>';
+    <li class="nav-item text-white"><a href="doctorlogin.php" class="nav-link text-white">Doctor</a></li>
+    <li class="nav-item text-white"><a href="patientlogin.php" class="nav-link text-white">Patient</a></li>';
 }
 ?>
 
